@@ -9,50 +9,37 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 
 export class TaskService {
-  url: string;
+  url = "http://10.201.1.91:9001/task-management-tool/jira-tasks/main-tasks";
+  byUserName = "http://10.201.1.91:9001/task-management-tool/jira-tasks/all-main-tasks?";
 
 
   constructor(private httpClient: HttpClient) {
-    this.url = "http://10.201.118.7:9991/task-management-tool/jira-tasks/main-tasks";
   }
 
   getTask(id: number): Observable<any> {
     return this.httpClient.get(`${this.url}/${id}`);
   }
-
   // getting task list from API
   getTaskList(): Observable<any> {
-    let param: any = {'offset': 0, 'limit':100};
+    let param: any = { 'offset': 0, 'limit': 100 };
     console.log(this.httpClient.get(`${this.url}`));
-    return this.httpClient.get(`${this.url}`, {params: param});
-  }
-  // create employee phase 2
-  createTask(Task: Object): Observable<Object> {
-    return this.httpClient.post(`${this.url}`, Task);
+    return this.httpClient.get(`${this.url}`, { params: param });
   }
 
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+  searchNearDeadline(link: string) {
+    // let params: any = {};
+    // if (userName) {
+    //   params.userName = JSON.stringify(userName)
+    // }
+    // if (issueStatus) {
+    //   params.issueStatus = JSON.stringify(issueStatus)
+    // }
+    // if (dueDate) {
+    //   params.dueDate = JSON.stringify(dueDate)
+    // }
+    // console.log(JSON.stringify(userName));
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+    return this.httpClient.get(this.byUserName + link);
   }
-
-  /** Log a HeroService message with the MessageService */
-  // private log(message: string) {
-  //   this.messageService.add(`employeeService: ${message}`);
-  // }
 }

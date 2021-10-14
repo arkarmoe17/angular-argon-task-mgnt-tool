@@ -1,29 +1,29 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { Employee } from 'src/app/employee';
-import { EmployeeService } from 'src/app/employee.service';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { EmployeeInfo } from 'src/app/models/EmployeeInfo';
+import { Task } from 'src/app/tasks';
+import { TaskService } from 'src/app/tasks.service';
+
 @Component({
-  selector: 'app-tag-input',
-  templateUrl: './tag-input.component.html',
-  styleUrls: ['./tag-input.component.css']
+  selector: 'dropdown-input',
+  templateUrl: './dropdown-input.component.html',
+  styleUrls: ['./dropdown-input.component.css']
 })
-export class TagInputComponent implements OnInit {
-  @Output() changeEmployeeIds = new EventEmitter<any>();
+export class DropdownInputComponent implements OnInit {
+
+  @Output() taskStatus = new EventEmitter<any>();
 
   employees: [];
   dropdownList = [];
   selectedItems = [];
   content = "";
   dropdownSettings: IDropdownSettings;
-  employeeIds: number[];
+  tasks: any;
 
-  constructor(private employeeService: EmployeeService, private router: Router) { }
+  constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit() {
-    this.employeeIds = new Array();
     this.reloadData();
 
     this.selectedItems = [
@@ -41,30 +41,29 @@ export class TagInputComponent implements OnInit {
   }
 
   reloadData() {
-    this.employeeService.getEmployeeList().subscribe(data => {
+    this.taskService.getTaskList().subscribe(data => {
       this.employees = data.result.content;
       this.dropdownList = this.employees;
       console.log("log customer", this.employees);
     });
   }
 
-  onItemSelect(item: EmployeeInfo) {
+  onItemSelect(item: Task) {
     console.log("item select function: ", item);
-    this.employeeIds.push(item.id);
-    console.log("employeeIds: ", this.employeeIds);
-    this.changeEmployeeIds.emit(this.employeeIds);
+    this.tasks.push(item.issueStatus);
+    console.log("employeeIds: ", this.tasks);
+    this.taskStatus.emit(this.tasks);
     console.log("finish call changeEmployeeIds");
   }
 
   onSelectAll(items: any) {
     console.log("select all function: ", items);
   }
-  onDeSelect(item: EmployeeInfo) {
-    const index = this.employeeIds.indexOf(item.id, 0);
-
+  onDeSelect(item: Task) {
+    const index = this.tasks.indexOf(item.issueStatus, 0);
     if (index > -1) {
-      this.employeeIds.splice(index, 1);
+      this.tasks.splice(index, 1);
     }
-    console.log("employeeIds: ", this.employeeIds);
+    console.log("employeeIds: ", this.tasks);
   }
 }

@@ -21,41 +21,43 @@ import { EmployeeInfo } from 'src/app/models/EmployeeInfo';
 })
 export class SmsModalComponent {
   @Input() employeeIds;
-  @ViewChild(TagInputComponent) taginput:TagInputComponent;
+  @ViewChild(TagInputComponent) taginput: TagInputComponent;
 
   // employeeIds : number[];
-  sms: Sms  = new Sms();
+  sms: Sms = new Sms();
   submitted = false;
-  
-constructor(public activeModal: NgbActiveModal, private router: Router, private taskService: TaskService, private smsService: SmsService,private fb: FormBuilder) { }
-newID =[];
 
-ngOnInit(): void {
-  // console.log(this.sms.employeeIds);
-}
+  constructor(public activeModal: NgbActiveModal, private router: Router, private taskService: TaskService, private smsService: SmsService, private fb: FormBuilder) { }
+  newID = [];
+
+  ngOnInit(): void {
+    // console.log(this.sms.employeeIds);
+  }
 
 
 
-employeeIdsEvent(employeeIds: any){
-  this.sms.employeeIds = employeeIds;
-}
+  employeeIdsEvent(employeeIds: any) {
+    this.sms.employeeIds = employeeIds;
+  }
 
-sendSmsToMember() {
+  sendSmsToMember() {
 
-  this.sms.informType='SMS';
-  // this.submitted = true;
-  // this.sms.cc=[];
-  // this.sms.content='';
-  // this.sms.employeeIds=[];
+    this.sms.informType = 'SMS';
+    // this.submitted = true;
+    // this.sms.cc=[];
+    // this.sms.content='';
+    // this.sms.employeeIds=[];
 
-  this.smsService.sendSMS(this.sms).subscribe(data => {
-    console.log(data);
-    // console.log(InformType);
-    // this.sms = new Sms();
-  },
-    error => console.log(error)
-  );
-}
+    this.smsService.sendSMS(this.sms).subscribe(data => {
+      console.log(data);
+      window.alert("Message was sent successfully !!!!!!");
+
+      // console.log(InformType);
+      // this.sms = new Sms();
+    },
+      error => console.log(error)
+    );
+  }
 
 }
 

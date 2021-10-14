@@ -1,7 +1,7 @@
 export class Sms {
-    employeeIds:Array<number>;
-    content:string;
+    employeeIds: Array<number>;
+    content: string;
     informType: String;
-    subject:string;
+    subject: string;
     cc: number[];
 }

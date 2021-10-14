@@ -1,12 +1,12 @@
 
-export class Employee {
+export interface Employee {
     id: number;
-    name:string;
-    userName:string;
-    phoneNumber:string;
-    position:string;
-    vmyCode:string;
-    department:string;
+    name: string;
+    userName: string;
+    phoneNumber: string;
+    position: string;
+    vmyCode: string;
+    department: string;
     // out of API
     // project_name: string;
     // cr:string;

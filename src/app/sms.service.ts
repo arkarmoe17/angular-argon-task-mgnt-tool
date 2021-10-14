@@ -9,10 +9,10 @@ import { Sms } from './Sms';
 export class SmsService {
   url: string;
   constructor(private httpClient: HttpClient) {
-    this.url = "http://10.201.118.7:9991/task-management-tool/employees/multi-sms";
+    this.url = "http://10.201.1.91:9001/task-management-tool/employees/multi-sms";
   }
 
-  sendSMS(sms: Sms): Observable<Object>{
+  sendSMS(sms: Sms): Observable<Object> {
     console.log(Sms);
     return this.httpClient.post(`${this.url}`, sms);
   }

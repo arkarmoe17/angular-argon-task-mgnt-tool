@@ -12,8 +12,8 @@ import { Employee } from 'src/app/employee';
 })
 export class EmployeeListComponent implements OnInit {
 
-  employees: Observable<Employee[]>;  
-  constructor(private employeeService: EmployeeService, private router: Router,public modalService: NgbModal ) { }
+  employees: Observable<Employee[]>;
+  constructor(private employeeService: EmployeeService, private router: Router, public modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.reloadData();
@@ -24,22 +24,26 @@ export class EmployeeListComponent implements OnInit {
       console.log(this.employees);
     });
   }
-
-  deleteEmployee(id: number){
+  deleteEmployee(id: number) {
     this.employeeService.deleteEmployee(id)
-    .subscribe(
-      data => {
-        console.log(data);
-        this.reloadData();
-      },
-      error => console.log(error)
-    );
+      .subscribe(
+        data => {
+          console.log(data);
+          this.reloadData();
+        },
+        error => console.log(error)
+      );
+  }
+  profile(id: number) {
+    console.log(id);
+    this.router.navigate(['profile']);
   }
 
-  profile(id: number){
-    console.log(id);
-    this.router.navigate(['profile']);  
+  username: any;
+  search() {
+    this.employeeService.getUsername(this.username).subscribe((data: any) => {
+      this.employees = data.result;
+    })
   }
-  
-  
+
 }

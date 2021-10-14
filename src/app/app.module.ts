@@ -19,12 +19,14 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { EmployeeListComponent } from './pages/employee-list/employee-list.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import { ProfileComponent } from './pages/profile/profile.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 import { SmsModalComponent } from './pages/sms-modal/sms-modal.component';
 import { EmailModalComponent } from './pages/email-modal/email-modal.component';
 import { TagInputComponent } from './pages/sms-modal/tag-input/tag-input.component';
+import { CreateEmployeeComponent } from './pages/create-employee/create-employee.component';
+import { DropdownInputComponent } from './pages/tables/dropdown-input/dropdown-input.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 
 @NgModule({
   imports: [
@@ -40,17 +42,19 @@ import { TagInputComponent } from './pages/sms-modal/tag-input/tag-input.compone
     MatButtonModule,
     ReactiveFormsModule,
     TagInputModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule,
+    AngularMultiSelectModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
     EmployeeListComponent,
-    ProfileComponent,
     SmsModalComponent,
     EmailModalComponent,
-    TagInputComponent
+    TagInputComponent,
+    CreateEmployeeComponent,
+    DropdownInputComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

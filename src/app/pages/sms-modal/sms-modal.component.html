@@ -1,7 +1,7 @@
 <!-- Bootstrap modal | Bootstrap modal  | Bootstrap modal  | Bootstrap modal  | Bootstrap modal  | Bootstrap modal -->
 <div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">New message:</h5>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <h5 class="modal-title" id="exampleModalLabel">New message:</h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
 
     <span aria-hidden="true">&times;</span>
   </button>
@@ -9,17 +9,17 @@
 <!-- Modal body  -->
 <div class="modal-body">
 
-  <label for="recipient-name" class="col-form-label">Recipient:</label>
-  <!-- tag -->
-  <app-tag-input (changeEmployeeIds)="employeeIdsEvent($event)"></app-tag-input>
-  <!-- Message -->
-  <div class="form-group">
-    <label for="recipient-name" class="col-form-label">Message:</label>
-    <textarea type="text" class="form-control" id="content" required [(ngModel)]="sms.content" name="content" #content></textarea>
-  </div>
+    <label for="recipient-name" class="col-form-label">Recipient:</label>
+    <!-- tag -->
+    <app-tag-input (changeEmployeeIds)="employeeIdsEvent($event)"></app-tag-input>
+    <!-- Message -->
+    <div class="form-group">
+        <label for="recipient-name" class="col-form-label">Message:</label>
+        <textarea type="text" class="form-control" id="content" required [(ngModel)]="sms.content" name="content" #content></textarea>
+    </div>
 
 </div>
 <div class="modal-footer">
-  <button (ngSubmit)="passBack()" type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <button (click)="sendSmsToMember()" type="submit" class="btn btn-secondary" data-dismiss="modal">Send Now</button>
+    <button (ngSubmit)="passBack()" type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button (click)="sendSmsToMember()" type="submit" class="btn btn-secondary" data-dismiss="modal">Send Now</button>
 </div>
