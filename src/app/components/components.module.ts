@@ -5,6 +5,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CreateEmployeeComponent } from './create-employee/create-employee.component';
+import { MyPaginatorComponent } from './my-paginator/my-paginator.component';
 
 
 @NgModule({
@@ -17,11 +19,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
+    CreateEmployeeComponent,
+    MyPaginatorComponent,
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    MyPaginatorComponent,
   ]
 })
 export class ComponentsModule { }

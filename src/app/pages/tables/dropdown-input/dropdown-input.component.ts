@@ -1,9 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { Router } from '@angular/router';
-import { EmployeeInfo } from 'src/app/models/EmployeeInfo';
-import { Task } from 'src/app/tasks';
-import { TaskService } from 'src/app/tasks.service';
+import { Task } from '../../../models/tasks';
+import { TaskService } from 'src/app/services/tasks.service';
 
 @Component({
   selector: 'dropdown-input',
@@ -41,7 +40,7 @@ export class DropdownInputComponent implements OnInit {
   }
 
   reloadData() {
-    this.taskService.getTaskList().subscribe(data => {
+    this.taskService.getTaskList('').subscribe(data => {
       this.employees = data.result.content;
       this.dropdownList = this.employees;
       console.log("log customer", this.employees);

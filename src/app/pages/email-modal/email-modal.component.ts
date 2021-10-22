@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Email } from 'src/app/email';
-import { EmailService } from 'src/app/email.service';
+import { Email } from 'src/app/models/email';
+import { EmailService } from 'src/app/services/email.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { EmployeeService } from 'src/app/employee.service';
-import { Employee } from 'src/app/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { Employee } from 'src/app/models/employee';
 
 @Component({
   selector: 'app-email-modal',

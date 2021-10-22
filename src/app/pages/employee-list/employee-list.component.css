@@ -1,0 +1,19 @@
+.header_fs th {
+  font-size: 14px;
+}
+
+.fab-icon {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 100;
+}
+
+button:focus {
+  outline: none;
+}
+
+.btn-warning:focus {
+  background-color: #fb6340;
+  color: #fff;
+}

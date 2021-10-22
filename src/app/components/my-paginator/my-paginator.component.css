@@ -1,0 +1,9 @@
+.active .page-link {
+  --theme-color: tomato;
+  background-color: var(--theme-color);
+  border-color: var(--theme-color);
+  outline-color: var(--theme-color);
+}
+.disabled .page-link {
+  opacity: 0.3;
+}

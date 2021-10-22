@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import { Employee } from 'src/app/employee';
-import { EmployeeService } from 'src/app/employee.service';
+import { Employee } from 'src/app/models/employee';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { EmployeeInfo } from 'src/app/models/EmployeeInfo';
@@ -41,7 +41,7 @@ export class TagInputComponent implements OnInit {
   }
 
   reloadData() {
-    this.employeeService.getEmployeeList().subscribe(data => {
+    this.employeeService.getAllEmployeeList('', 0, 100).subscribe(data => {
       this.employees = data.result.content;
       this.dropdownList = this.employees;
       console.log("log customer", this.employees);

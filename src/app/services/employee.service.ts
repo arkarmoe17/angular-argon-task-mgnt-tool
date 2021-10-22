@@ -3,16 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 // import { MessageService } from './message.service';
-import { Employee } from './employee';
+import { Employee } from '../models/employee';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class EmployeeService {
-  url = "http://10.201.1.91:9001/task-management-tool/employees/lists";
-  getUrl = "http://10.201.1.91:9001/task-management-tool/employees/username?userName=";
-  newEmployee = "http://10.201.1.91:9001/task-management-tool/employees/";
+  url = "http://10.201.118.4:9001/task-management-tool/employees";
+  // getUrl = "http://10.201.1.91:9001/task-management-tool/employees/username?userName=";
+  newEmployee = "http://10.201.1.91:9001/task-management-tool/employees";
 
   constructor(private httpClient: HttpClient) {
   }
@@ -32,19 +32,20 @@ export class EmployeeService {
   deleteEmployee(id: number): Observable<any> {
     return this.httpClient.delete(`${this.url}/${id}`, { responseType: 'text' });
   }
+
   // getting employee list from API
-  getEmployeeList(): Observable<any> {
-    let param: any = { 'offset': 0, 'limit': 100 };
+  getAllEmployeeList(username: string, offset: number, limit: number): Observable<any> {
+    let param: any = { 'username': username, 'offset': offset, 'limit': limit };
 
-    console.log(this.httpClient.get(`${this.url}`));
-    return this.httpClient.get(`${this.url}`, { params: param });
+    console.log('req param:', param);
+    return this.httpClient.get(`${this.url}/lists`, { params: param });
   }
 
-  getUsername(name: any) {
-    let params: any = {};
-    if (name) {
-      params.name = name
-    }
-    return this.httpClient.get(this.getUrl + name);
-  }
+  // getUsername(name: any) {
+  //   let params: any = {};
+  //   if (name) {
+  //     params.name = name
+  //   }
+  //   return this.httpClient.get(this.getUrl + name);
+  // }
 }
