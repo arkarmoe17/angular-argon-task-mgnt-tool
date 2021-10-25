@@ -9,7 +9,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TagInputModule } from 'ngx-chips';
 import { FormsModule } from '@angular/forms';
@@ -30,6 +29,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MyPaginatorComponent } from './components/my-paginator/my-paginator.component';
+import { TablesComponent } from './pages/tables/tables.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatDialogModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    NgbModule,
   ],
   declarations: [
     AppComponent,
@@ -63,6 +66,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     TagInputComponent,
     CreateEmployeeComponent,
     DropdownInputComponent,
+    MyPaginatorComponent,
+    TablesComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

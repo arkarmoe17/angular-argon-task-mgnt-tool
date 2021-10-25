@@ -9,6 +9,7 @@
             <li class="page-item" *ngFor='let i of pageSize' [ngClass]='{active:i===pagable.currentPage}'>
                 <a class="page-link" (click)="setPage(i)">{{i+1}}</a>
             </li>
+
             <li class="page-item" [ngClass]='{disabled: pagable.currentPage>=pagable.totalPages-1}'>
                 <a class="page-link" (click)='nextPage()'>
                     <i class="fa fa-chevron-right"></i>

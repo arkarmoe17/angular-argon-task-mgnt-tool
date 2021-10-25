@@ -6,27 +6,27 @@ import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
-import { MyPaginatorComponent } from './my-paginator/my-paginator.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    MatProgressBarModule
   ],
   declarations: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
     CreateEmployeeComponent,
-    MyPaginatorComponent,
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
-    MyPaginatorComponent,
   ]
 })
-export class ComponentsModule { }
+export class ComponentsModule {
+}

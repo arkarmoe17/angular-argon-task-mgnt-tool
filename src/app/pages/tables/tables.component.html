@@ -11,7 +11,8 @@
                                     Username
                                 </label>
                                 <input class="form-control form-control-alternative" id="input-username"
-                                    placeholder="Enter username" type="text" ngModel name="userName" />
+                                    placeholder="Enter username" type="text" ngModel name="userName"
+                                    (keyup)="search(searchForm.value)" />
                             </div>
                         </div>
                         <div class="col-4 col-lg-3 col-xl-2">
@@ -35,10 +36,11 @@
                                     Due Date</label>
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                        <span class="input-group-text"><i class="ni ni-calendar-grid-58"
+                                                (click)="d.toggle()"></i></span>
                                     </div>
                                     <input class="form-control datepicker" placeholder="Select date" id="input-duedate"
-                                        name="dueDate" [(ngModel)]="dueDate" ngbDatepicker #d="ngbDatepicker"
+                                        name="dueDate" [(ngModel)]="data.dueDate" ngbDatepicker #d="ngbDatepicker"
                                         (click)="d.toggle()" type="text" />
                                 </div>
                             </div>
@@ -60,9 +62,14 @@
     <div class="row">
         <div class="col">
             <div class="card shadow">
-                <div class="card-header border-0">
+                <div class="card-header border-0" id='top'>
                     <h3 class="mb-0">Tasks</h3>
                 </div>
+                <div class="alert alert-danger w-25 mx-auto" *ngIf="error">
+                    <i class="fa fa-warning me-2"></i>Something went wrong.
+                </div>
+                <!-- loading progress bar -->
+                <mat-progress-bar mode="indeterminate" *ngIf='loading'></mat-progress-bar>
                 <div class="table-responsive">
                     <table class="table align-items-start">
                         <thead class="thead-light">
@@ -77,29 +84,15 @@
                                 <th class="font-weight-800 text-warning">Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody *ngIf="tasks.length; else noData">
                             <tr *ngFor="let task of tasks">
-                                <td>
-                                    {{ task.task }}
-                                </td>
-                                <td>
-                                    {{ task.crNo }}
-                                </td>
-                                <td>
-                                    {{ task.pname }}
-                                </td>
-                                <td>
-                                    {{ task.issueType }}
-                                </td>
-                                <td>
-                                    {{ task.dueDate }}
-                                </td>
-                                <td>
-                                    {{ task.issueStatus }}
-                                </td>
-                                <td>
-                                    {{ task.userName }}
-                                </td>
+                                <td> {{ task.task }} </td>
+                                <td> {{ task.crNo }} </td>
+                                <td> {{ task.pname }} </td>
+                                <td> {{ task.issueType }} </td>
+                                <td> {{ task.dueDate }} </td>
+                                <td> {{ task.issueStatus }} </td>
+                                <td> {{ task.userName }} </td>
                                 <td class="px-0">
                                     <i class="fas fa-sms fa-2x" (click)="openSmsModal()" style="cursor: pointer"></i>
                                     <i class="fas fa-envelope fa-2x" (click)="openEmailModal()"
@@ -107,38 +100,35 @@
                                 </td>
                             </tr>
                         </tbody>
+                        <ng-template #noData>
+                            <tbody>
+                                <tr>
+                                    <td colspan="7" *ngIf="!loading">
+                                        <p>There is no data.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </ng-template>
+                        <tbody *ngIf='loading'>
+                            <tr>
+                                <td colspan="7">
+                                    <p>Loading...</p>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
-                <div class="card-footer py-4" style="display: none">
-                    <nav aria-label="... ">
-                        <ul class="pagination justify-content-end mb-0">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="javascript:void(0) " tabindex="-1 ">
-                                    <i class="fas fa-angle-left"></i>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="javascript:void(0) ">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="javascript:void(0) ">2 <span
-                                        class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="javascript:void(0) ">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="javascript:void(0) ">
-                                    <i class="fas fa-angle-right"></i>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                <!-- pagination -->
+                <div class="container-fluid mt-2" *ngIf='tasks.length'>
+                    <div class="row justify-content-center">
+                        <p class="col-2"> {{currentTotalElement}} /
+                            {{totalTasks}} tasks</p>
+                        <app-my-paginator class="col" [pagable]="pagable" (changePage)="onChangePage($event)">
+                        </app-my-paginator>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Dark table -->
+
 </div>

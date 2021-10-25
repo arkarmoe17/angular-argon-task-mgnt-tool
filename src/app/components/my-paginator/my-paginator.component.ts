@@ -14,9 +14,15 @@ export interface Pagable {
 export class MyPaginatorComponent {
   @Input() pagable: Pagable;
   @Output() changePage = new EventEmitter;
+  maxShowPage = 10;
 
   get pageSize() {
-    return Array.from(Array(this.pagable.totalPages).keys());
+    let currentPage = this.pagable.currentPage
+    let total = this.pagable.totalPages
+    let pages = []
+    let remain = Array.from(Array(total).keys()).slice(currentPage < 0 ? 0 : currentPage, total - 1);
+    pages.push(...remain.slice(0, this.maxShowPage - pages.length))
+    return pages
   }
 
   prevPage() {

@@ -30,16 +30,16 @@
                 </div>
                 <mat-progress-bar mode="indeterminate" *ngIf='loading'></mat-progress-bar>
                 <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
+                    <table class="table align-items-start">
                         <thead class="thead-light">
-                            <tr class="font-weight-light text-warning header_fs">
-                                <th class="font-weight-600 text-warning">Name</th>
-                                <th class="font-weight-600 text-warning">Username</th>
-                                <th class="font-weight-600 text-warning">Phone</th>
-                                <th class="font-weight-600 text-warning">Position</th>
-                                <th class="font-weight-600 text-warning">VMY Code</th>
-                                <th class="font-weight-600 text-warning">Department</th>
-                                <th class="font-weight-600 text-warning">Actions</th>
+                            <tr class="font-weight-normal text-warning header_fs">
+                                <th class="font-weight-800 text-warning">Name</th>
+                                <th class="font-weight-800 text-warning">Username</th>
+                                <th class="font-weight-800 text-warning">Phone</th>
+                                <th class="font-weight-800 text-warning">Position</th>
+                                <th class="font-weight-800 text-warning">VMY Code</th>
+                                <th class="font-weight-800 text-warning">Department</th>
+                                <th class="font-weight-800 text-warning">Actions</th>
                             </tr>
                         </thead>
                         <tbody *ngIf="employees.length;else noData">
@@ -85,6 +85,13 @@
                                 </tr>
                             </tbody>
                         </ng-template>
+                        <tbody *ngIf='loading'>
+                            <tr>
+                                <td colspan="7">
+                                    <p>Loading...</p>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
                 <div class="container-fluid mt-2" *ngIf='employees.length'>

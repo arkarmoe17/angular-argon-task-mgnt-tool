@@ -15,17 +15,17 @@ let t;
   encapsulation: ViewEncapsulation.None,
 })
 export class EmployeeListComponent implements OnInit {
-  username = '';
   loading = true
+  username = '';
   error: any = null;
   employees: Employee[] = [];
-
   pagable: Pagable = {
     totalPages: 1,
     currentPage: 0,
     limit: 10,
   }
   totalEmployees: number = 0;
+
   constructor(private employeeService: EmployeeService, private router: Router, public modalService: NgbModal, public dialog: MatDialog) { }
 
   // onInit function
@@ -58,14 +58,12 @@ export class EmployeeListComponent implements OnInit {
       );
   }
 
-  profile(id: number) {
-    console.log(id);
-    this.router.navigate(['profile']);
-  }
+  // profile(id: number) {
+  //   console.log(id);
+  //   this.router.navigate(['profile']);
+  // }
 
-  /**
-   * [TODO] reset offset,limit 
-   */
+
   search(username: string) {
     this.pagable.currentPage = 0;
     this.loading = true;
