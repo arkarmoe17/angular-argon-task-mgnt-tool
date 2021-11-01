@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
 
 
 @NgModule({
@@ -14,13 +16,16 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     CommonModule,
     RouterModule,
     NgbModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
     CreateEmployeeComponent,
+    DeleteEmployeeComponent,
   ],
   exports: [
     FooterComponent,

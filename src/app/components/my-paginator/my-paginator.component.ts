@@ -20,7 +20,7 @@ export class MyPaginatorComponent {
     let currentPage = this.pagable.currentPage
     let total = this.pagable.totalPages
     let pages = []
-    let remain = Array.from(Array(total).keys()).slice(currentPage < 0 ? 0 : currentPage, total - 1);
+    let remain = Array.from(Array(total).keys()).slice(currentPage < 0 ? 0 : currentPage, total); //2..9
     pages.push(...remain.slice(0, this.maxShowPage - pages.length))
     return pages
   }

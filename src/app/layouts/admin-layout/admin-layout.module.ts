@@ -16,6 +16,7 @@ import { MyPaginatorComponent } from 'src/app/components/my-paginator/my-paginat
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
     ClipboardModule,

@@ -6,6 +6,7 @@ import { Employee } from 'src/app/models/employee';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateEmployeeComponent } from 'src/app/components/create-employee/create-employee.component';
 import { Pagable } from 'src/app/components/my-paginator/my-paginator.component';
+import { DeleteEmployeeComponent } from 'src/app/components/delete-employee/delete-employee.component';
 
 let t;
 @Component({
@@ -58,11 +59,6 @@ export class EmployeeListComponent implements OnInit {
       );
   }
 
-  // profile(id: number) {
-  //   console.log(id);
-  //   this.router.navigate(['profile']);
-  // }
-
 
   search(username: string) {
     this.pagable.currentPage = 0;
@@ -73,6 +69,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   private searchEmployee(username: string) {
+    this.username = username
     this.employeeService.getAllEmployeeList(username, this.pagable.currentPage, this.pagable.limit).subscribe((data: any) => {
       this.employees = data.result.content;
       this.totalEmployees = data.result.totalElements;
@@ -89,6 +86,7 @@ export class EmployeeListComponent implements OnInit {
     }
     );
     modal.componentInstance.close = () => modal.close();
+    modal.componentInstance.reload = () => this.reloadData();
   }
 
   // change page
@@ -106,4 +104,18 @@ export class EmployeeListComponent implements OnInit {
     let currentTotalElement = (this.pagable.currentPage + 1) * this.pagable.limit;
     return currentTotalElement >= this.totalEmployees ? this.totalEmployees : currentTotalElement;
   }
+
+  //open delete modal 
+  openEmployeeDelete(id: number) {
+    const modal = this.dialog.open(
+      DeleteEmployeeComponent, {
+      width: '600px'
+    }
+    );
+    modal.componentInstance.id = id;
+    modal.componentInstance.close = () => modal.close();
+    modal.componentInstance.reload = () => this.searchEmployee(this.username);
+  }
+
+
 }

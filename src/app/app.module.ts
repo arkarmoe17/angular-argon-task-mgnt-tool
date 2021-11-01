@@ -21,7 +21,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { SmsModalComponent } from './pages/sms-modal/sms-modal.component';
 import { EmailModalComponent } from './pages/email-modal/email-modal.component';
 import { TagInputComponent } from './pages/sms-modal/tag-input/tag-input.component';
-import { CreateEmployeeComponent } from './pages/create-employee/create-employee.component';
 import { DropdownInputComponent } from './pages/tables/dropdown-input/dropdown-input.component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -64,7 +63,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SmsModalComponent,
     EmailModalComponent,
     TagInputComponent,
-    CreateEmployeeComponent,
     DropdownInputComponent,
     MyPaginatorComponent,
     TablesComponent
