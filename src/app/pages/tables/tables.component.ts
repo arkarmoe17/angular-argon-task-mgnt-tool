@@ -27,7 +27,7 @@ export class TablesComponent implements OnInit {
   pagable: Pagable = {
     totalPages: 1,
     currentPage: 0,
-    limit: 50,
+    limit: 20,
   }
   totalTasks: number = 0;
   error: any = null;
